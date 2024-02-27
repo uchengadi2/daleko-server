@@ -50,6 +50,9 @@ const transferRoute = require("./routes/transferRoute");
 const remediationRoute = require("./routes/remediationRoute");
 const delistmentRoute = require("./routes/delistmentRoute");
 const returnsRoute = require("./routes/returnsRoute");
+const productVariantRoute = require("./routes/productVariantRoute");
+const sensitivityRoute = require("./routes/sensitivityRoute");
+const couponRoute = require("./routes/couponRoute");
 
 const app = express();
 
@@ -157,6 +160,9 @@ app.use("/api/v1/transfers", transferRoute);
 app.use("/api/v1/remediations", remediationRoute);
 app.use("/api/v1/delistments", delistmentRoute);
 app.use("/api/v1/returns", returnsRoute);
+app.use("/api/v1/variants", productVariantRoute);
+app.use("/api/v1/sensitivities", sensitivityRoute);
+app.use("/api/v1/coupons", couponRoute);
 
 //tackling unhandled routes
 app.all("*", (req, res, next) => {

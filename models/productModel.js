@@ -205,9 +205,7 @@ const productSchema = new mongoose.Schema(
       default: "pricing",
       enum: ["pricing", "request-quote", "bidding"],
     },
-    weightInKg: {
-      type: Number,
-    },
+
     presentWeightUnitIn: {
       type: String,
       default: "g",
@@ -243,28 +241,7 @@ const productSchema = new mongoose.Schema(
       default: false,
       enum: [false, true],
     },
-    hasSizeVariant: { type: Boolean, default: false, enum: [false, true] },
-    hasColourVariant: {
-      type: Boolean,
-      default: false,
-      enum: [false, true],
-    },
-    hasMaterialVariant: {
-      type: Boolean,
-      default: false,
-      enum: [false, true],
-    },
-    hasStyleVariant: { type: Boolean, default: false, enum: [false, true] },
-    variant: [
-      {
-        size: { type: String | null },
-        colour: { type: String | null },
-        material: { type: String | null },
-        style: { type: String | null },
-        image: { type: String },
-        images: { type: Array },
-      },
-    ],
+
     sku: {
       type: String,
     },
