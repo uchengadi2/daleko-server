@@ -7,9 +7,7 @@ const affiliateSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please provide the name of a affiliate"],
     },
-    refNumber: {
-      type: String,
-    },
+
     name: {
       type: String,
       required: [false, "Please provide the name of a affiliate"],
@@ -18,15 +16,12 @@ const affiliateSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
-    type: {
+    affiliateType: {
       type: String,
       default: "local",
       enum: ["local", "foreign"],
     },
-    logo: {
-      type: String,
-      required: [false, "Please provide the logo of this affiliate"],
-    },
+
     address: {
       type: String,
     },
@@ -42,20 +37,17 @@ const affiliateSchema = new mongoose.Schema(
         ref: "State",
       },
     ],
-    city: [
-      {
-        type: mongoose.Schema.ObjectId,
-        ref: "City",
-      },
-    ],
 
     contactPerson: {
       type: String,
     },
-    contactPhoneNumber: {
+    contactPhoneNumbers: {
       type: String,
     },
     contactPersonEmail: {
+      type: String,
+    },
+    natureOfBusiness: {
       type: String,
     },
   },
@@ -69,7 +61,7 @@ const affiliateSchema = new mongoose.Schema(
 //QUERY MIDDLEWARE
 affiliateSchema.pre(/^find/, function (next) {
   this.populate({
-    path: "city",
+    path: "state",
   });
   //   this.populate({
   //     path: "product",

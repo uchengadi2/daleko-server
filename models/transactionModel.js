@@ -149,7 +149,7 @@ const transactionSchema = new mongoose.Schema(
     deliveryMode: {
       type: String,
       default: "standard",
-      enum: ["standard", "priority", "sameday"],
+      enum: ["standard", "priority", "sameday", "pickup"],
     },
     daysToDelivery: {
       type: String,

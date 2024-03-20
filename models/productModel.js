@@ -17,34 +17,19 @@ const productSchema = new mongoose.Schema(
       trim: true,
     },
 
-    refNumber: {
-      type: String,
-    },
+    // refNumber: {
+    //   type: String,
+    // },
     imageCover: {
       type: String,
       required: [false, "Please provide the image cover"],
     },
-    mainImage: {
-      type: String,
-    },
+
     images: [
       {
         type: String,
       },
     ],
-
-    totalUnits: {
-      type: Number,
-      default: 0,
-
-      required: [false, "A product must have quanyity"],
-    },
-    remainingUnits: {
-      type: Number,
-      default: 0,
-
-      required: [false, "A product must have quanyity"],
-    },
 
     category: [
       {
@@ -52,32 +37,19 @@ const productSchema = new mongoose.Schema(
         ref: "Category",
       },
     ],
-    suppliers: [
-      {
-        type: mongoose.Schema.ObjectId,
-        ref: "Supplier",
-      },
-    ],
 
-    pricePerUnit: {
-      type: Number,
-    },
-
-    minQuantity: {
-      type: Number,
-      default: 1,
-    },
-    isOnPromo: {
-      type: String,
-      default: "no",
-      enum: ["no", "yes"],
-    },
-    promoPrice: {
-      type: Number,
-    },
     currency: {
       type: mongoose.Schema.ObjectId,
       ref: "Currency",
+    },
+
+    minimumQuantity: {
+      type: Number,
+    },
+    unit: {
+      type: String,
+      default: "kg",
+      enum: ["kg", "g", "ibs", "tonnes"],
     },
 
     keyword1: {
@@ -89,7 +61,15 @@ const productSchema = new mongoose.Schema(
     keyword3: {
       type: String,
     },
-
+    pricePerUnit: {
+      type: Number,
+    },
+    priceLabel: {
+      type: String,
+    },
+    weightPerUnit: {
+      type: Number,
+    },
     unit: {
       type: String,
     },
@@ -97,7 +77,7 @@ const productSchema = new mongoose.Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      select: false,
+      //select: false,
     },
     createdBy: [
       {
@@ -120,12 +100,12 @@ const productSchema = new mongoose.Schema(
       default: "yes",
       enum: ["yes", "no"],
     },
-    expiryDate: {
-      type: Date,
-    },
-    manufacturer: {
+    stockStatus: {
       type: String,
+      default: "in-stock",
+      enum: ["in-stock", "out-of-stock"],
     },
+
     countryOfOrigin: {
       type: String,
     },
@@ -135,103 +115,48 @@ const productSchema = new mongoose.Schema(
     benefits: {
       type: String,
     },
-    sideEffects: {
-      type: String,
-    },
-    testimonials: {
-      type: String,
-    },
-    dosage: {
-      type: String,
-    },
-    ingredients: {
-      type: String,
-    },
-    model: {
-      type: String,
-    },
+
     yearManufactured: {
       type: String,
     },
     brand: {
       type: String,
     },
-    make: {
-      type: String,
-    },
+
     source: {
       type: String,
     },
     salesPreference: {
       type: String,
       default: "retail",
-      enum: ["retail", "wholesale"],
+      enum: ["retail", "wholesale", "derica", "paint"],
     },
-    requestQuote: {
-      type: Boolean,
-      default: false,
-      enum: [false, true],
-    },
+
     allowSubscription: {
       type: Boolean,
       default: false,
       enum: [false, true],
     },
 
-    shopsAvailable: {
-      type: String,
-    },
     slug: {
       type: String,
     },
-    type: {
-      type: String,
-      default: "food supplement",
-      enum: [
-        "beverages",
-        "food supplement",
-        "capsules",
-        "soak",
-        "lotion",
-        "tonic",
-        "others",
-      ],
-    },
-    howToUse: {
+    marketPricingCondition: {
       type: String,
     },
+
     pricingMechanism: {
       type: String,
       default: "pricing",
       enum: ["pricing", "request-quote", "bidding"],
     },
 
-    presentWeightUnitIn: {
-      type: String,
-      default: "g",
-      enum: ["g", "kg", "tonnes", "lb"],
-    },
     isVatable: {
       type: Boolean,
       default: false,
       enum: [false, true],
     },
 
-    revenueMargin: {
-      type: Number,
-    },
-    revenueMarginShouldPrevail: {
-      type: Boolean,
-      default: false,
-      enum: [false, true],
-    },
-
-    origins: [
-      {
-        type: mongoose.Schema.ObjectId,
-        ref: "City",
-      },
-    ],
     minimumDaysToEffectiveReview: {
       type: Number,
       default: 0,
@@ -244,6 +169,48 @@ const productSchema = new mongoose.Schema(
 
     sku: {
       type: String,
+    },
+    barcode: {
+      type: String,
+    },
+    deliverability: {
+      type: String,
+    },
+    pickupInfo: {
+      type: String,
+    },
+
+    allowPriceFreezing: {
+      type: Boolean,
+      default: false,
+      enum: [false, true],
+    },
+    allowFreezedPriceLowBound: {
+      type: Boolean,
+      default: false,
+      enum: [false, true],
+    },
+    freezedPriceLowBound: {
+      type: Number,
+      default: 0,
+    },
+    chargesPerWeekOnFreezedPriceServiceWithoutPriceLowBound: {
+      type: Number,
+      default: 0,
+    },
+    chargesPerWeekOnFreezedPriceServiceWithPriceLowBound: {
+      type: Number,
+      default: 0,
+    },
+    freezedPriceMaximumDurationInWeeks: {
+      type: Number,
+      default: 0,
+    },
+    minimumFreezableQuantity: {
+      type: Number,
+    },
+    datePriceWasSet: {
+      type: Date,
     },
   },
   {

@@ -1,6 +1,6 @@
 const multer = require("multer");
 const sharp = require("sharp");
-const Product = require("./../models/productModel");
+const RequestQuote = require("./../models/RequestQuoteModel");
 const APIFeatures = require("./../utils/apiFeatures");
 const catchAsync = require("./../utils/catchAsync");
 const AppError = require("./../utils/appError");
@@ -80,17 +80,17 @@ exports.resizeProductImages = catchAsync(async (req, res, next) => {
   next();
 });
 
-//the handler to get all product
-exports.getAllProducts = factory.getAll(Product);
+//the handler to get all RequestQuote
+exports.getAllQuotes = factory.getAll(RequestQuote);
 
-//the handler to create a product
-exports.createProduct = factory.createOne(Product);
+//the handler to create a quote
+exports.createQuote = factory.createOne(RequestQuote);
 
-//the handler to get one product
-exports.getProduct = factory.getOne(Product);
+//the handler to get one quote
+exports.getQuote = factory.getOne(RequestQuote);
 
-//the handler to update a product
-exports.updateProduct = factory.updateOne(Product);
+//the handler to update a quote
+exports.updateQuote = factory.updateOne(RequestQuote);
 
-//the handler to delete a product
-exports.deleteProduct = factory.deleteOne(Product);
+//the handler to delete a quote
+exports.deleteQuote = factory.deleteOne(RequestQuote);

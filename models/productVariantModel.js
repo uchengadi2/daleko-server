@@ -21,7 +21,11 @@ const productVariantSchema = new mongoose.Schema(
     unit: {
       type: String,
     },
-
+    displayOnHome: {
+      type: Boolean,
+      default: false,
+      enum: [false, true],
+    },
     hasSizeVariant: { type: Boolean, default: false, enum: [false, true] },
     hasColourVariant: {
       type: Boolean,

@@ -49,6 +49,14 @@ const cartSchema = new mongoose.Schema(
     weightInKg: {
       type: Number,
     },
+    weightPerUnit: {
+      type: Number,
+    },
+    unit: {
+      type: String,
+      default: "kg",
+      enum: ["kg", "g", "ibs", "tonnes"],
+    },
     isVatable: {
       type: Boolean,
       default: false,

@@ -35,7 +35,6 @@ const cartRoute = require("./routes/cartRoute");
 const rateRoute = require("./routes/rateRoute");
 const relatedProductRoute = require("./routes/relatedProductRoute");
 const productsOnSaleRoute = require("./routes/productsOnSaleRoute");
-const logisticsPartnerRoute = require("./routes/logisticsPartnerRoute");
 const deliveryRoute = require("./routes/deliveryRoute");
 const transactionRoute = require("./routes/transactionRoute");
 const courseRoute = require("./routes/courseRoute");
@@ -53,6 +52,9 @@ const returnsRoute = require("./routes/returnsRoute");
 const productVariantRoute = require("./routes/productVariantRoute");
 const sensitivityRoute = require("./routes/sensitivityRoute");
 const couponRoute = require("./routes/couponRoute");
+const carrierRoute = require("./routes/carrierRoute");
+const quoteRoute = require("./routes/requestQuoteRoute");
+const freezePriceRoute = require("./routes/freezePriceRoute");
 
 const app = express();
 
@@ -145,7 +147,6 @@ app.use("/api/v1/carts", cartRoute);
 app.use("/api/v1/rates", rateRoute);
 app.use("/api/v1/relatedproducts", relatedProductRoute);
 app.use("/api/v1/productsonsale", productsOnSaleRoute);
-app.use("/api/v1/carriers", logisticsPartnerRoute);
 app.use("/api/v1/deliveries", deliveryRoute);
 app.use("/api/v1/transactions", transactionRoute);
 app.use("/api/v1/courses", courseRoute);
@@ -163,6 +164,9 @@ app.use("/api/v1/returns", returnsRoute);
 app.use("/api/v1/variants", productVariantRoute);
 app.use("/api/v1/sensitivities", sensitivityRoute);
 app.use("/api/v1/coupons", couponRoute);
+app.use("/api/v1/carriers", carrierRoute);
+app.use("/api/v1/quotes", quoteRoute);
+app.use("/api/v1/freezes", freezePriceRoute);
 
 //tackling unhandled routes
 app.all("*", (req, res, next) => {

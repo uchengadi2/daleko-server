@@ -153,7 +153,7 @@ const orderSchema = new mongoose.Schema(
     deliveryMode: {
       type: String,
       default: "standard",
-      enum: ["standard", "priority", "sameday"],
+      enum: ["standard", "priority", "sameday", "pickup"],
     },
     daysToDelivery: {
       type: String,
@@ -183,6 +183,9 @@ const orderSchema = new mongoose.Schema(
 orderSchema.pre(/^find/, function (next) {
   this.populate({
     path: "product",
+  });
+  this.populate({
+    path: "transactionId",
   });
   next();
 });
